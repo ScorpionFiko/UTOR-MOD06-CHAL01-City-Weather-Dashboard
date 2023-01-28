@@ -31,13 +31,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="citySearchLabel">Search for a city</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button id="btnClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <p class="card-text text-start">Enter city name or pick a city from your search history</p>
             <div class="input-group mb-2">
               <input id="inputCitySearch" placeholder="search for a city" type="text" class="form-control"  />
-              <button id="btnSearch" type="button" data-bs-dismiss="modal" class="btn btn-primary">Search</button>
+              <button id="btnSearch" type="button" class="btn btn-primary">Search</button>
             </div>
             <div class="input-group mb-2">
                 <select name="selectSearchHistory" id="selectSearchHistory" class="form-select" aria-label="Default select example" >
@@ -52,7 +52,24 @@
       </div>
     </div>
   </div>
-  
+
+
+  <!-- Modal for city list -->
+<div class="modal fade" id="cityList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cityListLabel">Please select from the following cities</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="cityListBody" class="modal-body">
+        <div name="cityListSelector" id="cityListSelector" class="list-group text-start" aria-label="Default select example" >
+                   
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
                       </div>
                 </div>
             </div>
@@ -79,6 +96,6 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
     <!-- including Day JS-->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="./assets/javascript/script.js"></script>
+    <script type="module" src="./assets/javascript/script.js"></script>
 </body>
 </html>
