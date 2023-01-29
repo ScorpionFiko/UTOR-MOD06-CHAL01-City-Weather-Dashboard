@@ -16,10 +16,6 @@
   text-transform: capitalize !important;
 }
 
-* {
-  transition: all 0.25s ease 0s;
-}
-
 .body-data {
     position: relative;
     padding-bottom: var(--footer-height)
