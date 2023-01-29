@@ -36,6 +36,11 @@
           <button id="btnClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="input-group mb-2 justify-content-between">
+            <label for="unitSlider" class="form-label">Metric<br/>&deg;C/kph</label><label for="unitSlider" class="form-label">Imperial<br/>&deg;F/mph</label>
+            <input type="range" class="form-range" min="0" max="1" step="1" id="unitSlider" value="0">
+        </div>
+
             <p class="card-text text-start">Enter city name or pick a city from your search history</p>
             <div class="input-group mb-2">
               <input id="inputCitySearch" placeholder="search for a city" type="text" class="form-control"  />

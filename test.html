@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <!-- including bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- including jquery ui base CSS-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- including custom css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+
+    <title>City Weather</title>
+</head>
+<body class="" style="">
+    <header>
+        <section>
+            <div class="container-fluid text-center">
+                <div class="row align-items-start text-primary-emphasis bg-primary-subtle align-items-center p-2">
+                      <div id="heading" class="col-md-10 col-s2">
+                        <h1 id="textCity" class="display-1">Sofia, BG Weather</h1>
+                      </div>
+                      <div id="search" class=" col-md-2 col-s2  position-relative">
+                        <!-- Button trigger modal -->
+<input placeholder="search for a city" type="text" class="form-control" data-bs-toggle="modal" data-bs-target="#citySearch">
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="citySearch" tabindex="-1" aria-labelledby="citySearchLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="citySearchLabel">Search for a city</h1>
+          <button id="btnClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-2">
+            <label for="customRange2" class="form-label">Example range</label><label for="customRange2" class="form-label">Example range</label>
+            <input type="range" class="form-range" min="0" max="1" step="1" id="customRange2">
+        </div>
+
+            <p class="card-text text-start">Enter city name or pick a city from your search history</p>
+            <div class="input-group mb-2">
+              <input id="inputCitySearch" placeholder="search for a city" type="text" class="form-control">
+              <button id="btnSearch" type="button" class="btn btn-primary">Search</button>
+            </div>
+            <div class="input-group mb-2">
+                <select name="selectSearchHistory" id="selectSearchHistory" class="form-select" aria-label="Default select example">
+                   
+                  <option value="0" id="searchHistory-item" data-name="">search history</option><option id="history-U29maWF1bmRlZmluZWRCRzQyLjY5NzcwMjgyMy4zMjE3MzU5" data-id="U29maWF1bmRlZmluZWRCRzQyLjY5NzcwMjgyMy4zMjE3MzU5" data-name="Sofia" data-country="BG" data-lat="42.6977028" data-lon="23.3217359">Sofia, BG</option><option id="history-U29maWF1bmRlZmluZWRNRDQ2Ljg0MzA2MzI4LjM4MDczOTk" data-id="U29maWF1bmRlZmluZWRNRDQ2Ljg0MzA2MzI4LjM4MDczOTk" data-name="Sofia" data-country="MD" data-lat="46.843063" data-lon="28.3807399">Sofia, MD</option><option id="history-V2F0ZXJsb29PbnRhcmlvQ0E0My40NjUyNjk5LTgwLjUyMjI5NjE" data-id="V2F0ZXJsb29PbnRhcmlvQ0E0My40NjUyNjk5LTgwLjUyMjI5NjE" data-name="Waterloo" data-state="Ontario" data-country="CA" data-lat="43.4652699" data-lon="-80.5222961">Waterloo, Ontario, CA</option><option id="history-Q2FsaWZvcm5pYVBlbm5zeWx2YW5pYVVTNDAuMDY1NzcyNC03OS44OTE4NDM2" data-id="Q2FsaWZvcm5pYVBlbm5zeWx2YW5pYVVTNDAuMDY1NzcyNC03OS44OTE4NDM2" data-name="California" data-state="Pennsylvania" data-country="US" data-lat="40.0657724" data-lon="-79.8918436">California, Pennsylvania, US</option></select>
+              </div>
+  
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal for city list -->
+<div class="modal fade" id="cityList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cityListLabel">Please select from the following cities</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="cityListBody" class="modal-body">
+        <div name="cityListSelector" id="cityListSelector" class="list-group text-start" aria-label="Default select example">
+                   
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                      </div>
+                </div>
+            
+        </section>
+    </header>
+    <main>
+      <section id="weatherForecast"><div class="row justify-content-between" id="weatherRow"><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675005579"><div class="card w-100" id="weatherCard1675005579"><div class="card-body" id="weatherCardBody1675005579"><h5 class="card-title">CURRENT<br>Jan 29, 2023 10:19 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/04d@4x.png" alt="image of broken clouds" id="weatherCardImg1675005579"><h6 class="card-subtitle mb-2 text-muted capitalize">broken clouds</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> 0.37°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 83%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 5.14kph</h5></div></div></div><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675090800"><div class="card w-100" id="weatherCard1675090800"><div class="card-body" id="weatherCardBody1675090800"><h5 class="card-title">Jan 30, 2023 10:00 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/04d@4x.png" alt="image of overcast clouds" id="weatherCardImg1675090800"><h6 class="card-subtitle mb-2 text-muted capitalize">overcast clouds</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> -0.46°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 86%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 1.66kph</h5></div></div></div><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675177200"><div class="card w-100" id="weatherCard1675177200"><div class="card-body" id="weatherCardBody1675177200"><h5 class="card-title">Jan 31, 2023 10:00 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/04d@4x.png" alt="image of broken clouds" id="weatherCardImg1675177200"><h6 class="card-subtitle mb-2 text-muted capitalize">broken clouds</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> 0.09°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 79%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 4.35kph</h5></div></div></div><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675263600"><div class="card w-100" id="weatherCard1675263600"><div class="card-body" id="weatherCardBody1675263600"><h5 class="card-title">Feb 1, 2023 10:00 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/04d@4x.png" alt="image of overcast clouds" id="weatherCardImg1675263600"><h6 class="card-subtitle mb-2 text-muted capitalize">overcast clouds</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> 1.2°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 81%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 1.34kph</h5></div></div></div><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675350000"><div class="card w-100" id="weatherCard1675350000"><div class="card-body" id="weatherCardBody1675350000"><h5 class="card-title">Feb 2, 2023 10:00 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/03d@4x.png" alt="image of scattered clouds" id="weatherCardImg1675350000"><h6 class="card-subtitle mb-2 text-muted capitalize">scattered clouds</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> 2.73°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 77%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 0.51kph</h5></div></div></div><div class="col-lg-2 col-md-3 col-sm-5 m-3   d-flex align-items-stretch" id="weatherCol1675436400"><div class="card w-100" id="weatherCard1675436400"><div class="card-body" id="weatherCardBody1675436400"><h5 class="card-title">Feb 3, 2023 10:00 am</h5><img class="card-img-top" src="https://openweathermap.org/img/wn/13d@4x.png" alt="image of light snow" id="weatherCardImg1675436400"><h6 class="card-subtitle mb-2 text-muted capitalize">light snow</h6><h5 class="card-title"><i class="fas fa-temperature-high"></i> 0.18°C</h5><h5 class="card-title"><i class="fas fa-water"></i> 83%</h5><h5 class="card-title"><i class="fas fa-wind"></i> 3.31kph</h5></div></div></div></div></section>
+ 
+
+    </main>
+    <footer>
+
+
+    </footer>
+
+
+
+
+
+    <!-- including bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- including jquery js-->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!-- including jquery UI-->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <!-- including Day JS-->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script type="module" src="./assets/javascript/script.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

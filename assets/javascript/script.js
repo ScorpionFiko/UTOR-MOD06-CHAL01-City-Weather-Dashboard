@@ -3,10 +3,7 @@ import { openWeatherApiKey } from "./apiKey.js";
 let apiKey = openWeatherApiKey();
 let storedSearchHistory = [];
 let localStorageSearchHistoryName = "searchHistory";
-let cityLat = 0;
-let cityLon = 0;
-let cityState = "";
-let cityCountry = "";
+let units = "metric"; // defaulting to metric
 
 function loadStoredSearchHistory() {
     storedSearchHistory = [];
@@ -38,7 +35,8 @@ function clearSearchHistory() {
     $('#selectSearchHistory').append($('<option/>', {
         text: selectOptionText,
         value: 0,
-        id: "searchHistory-item"
+        id: "searchHistory-item",
+
     }));
     $('#searchHistory-item').attr("data-name", "");
 }
@@ -73,8 +71,13 @@ function setupWeatherData(cityData) {
 
 
 function getWeatherData(cityData) {
-    let weatherCurrentAPI = "https://api.openweathermap.org/data/2.5/weather?lat=" + cityData.lat + "&lon=" + cityData.lon + "&appid=" + openWeatherApiKey() + "&units=metric";
-    let weatherForecastAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityData.lat + "&lon=" + cityData.lon + "&appid=" + openWeatherApiKey() + "&units=metric";
+    if ($("#unitSlider").val() === "0") {
+        units="metric";
+    } else {
+        units = "imperial"
+    }
+    let weatherCurrentAPI = "https://api.openweathermap.org/data/2.5/weather?lat=" + cityData.lat + "&lon=" + cityData.lon + "&appid=" + openWeatherApiKey() + "&units="+units;
+    let weatherForecastAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityData.lat + "&lon=" + cityData.lon + "&appid=" + openWeatherApiKey() + "&units=" +units;
 
     let weatherData = [];
     fetch(weatherCurrentAPI).then(function (response) {
@@ -103,7 +106,7 @@ function getWeatherData(cityData) {
 function renderWeatherData(weatherData) {
     $('#weatherForecast').empty();
     $('#weatherForecast').append($('<div>', {
-        class: "row justify-content-between",
+        class: "row justify-content-between  align-items-stretch w-100",
         id: "weatherRow"
     }));
 
@@ -111,12 +114,12 @@ function renderWeatherData(weatherData) {
         let element = weatherData[i];
         // appending column to the row
         $('#weatherRow').append($('<div>', {
-            class: "col-lg-2 col-md-8 col-sm-11 m-3 d-flex align-items-stretch",
+            class: "col-lg-2 col-md-3 col-sm-5 m-3 d-flex align-items-stretch justify-content-center",
             id: "weatherCol" + element.dt
         }));
         // appending card to the column
         $("#weatherCol" + element.dt).append($('<div>', {
-            class: "card",
+            class: "card w-100",
             id: "weatherCard" + element.dt
         }));
         // appending card body to the card
@@ -143,7 +146,7 @@ function renderWeatherData(weatherData) {
         }));
         // appending temp to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
-            html: '<i class="fas fa-temperature-high"></i> ' +element.main.temp + "&deg;C",
+            html: '<i class="fas fa-temperature-high"></i> ' +element.main.temp + "&deg;" + ((units==="metric")?"C":"F") ,
             class: "card-title"
         }));
         // appending humidity to the card body
@@ -153,7 +156,7 @@ function renderWeatherData(weatherData) {
         }));
         // appending wind to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
-            html: '<i class="fas fa-wind"></i> '+element.wind.speed + "kph",
+            html: '<i class="fas fa-wind"></i> '+element.wind.speed + ((units==="metric")?"kph":"mph"),
             class: "card-title"
         }));
 
@@ -265,6 +268,7 @@ $(function () {
             setupHeader(historyCity);
             $("#citySearch").modal('hide');
             $("#inputCitySearch").val("");
+            $("#selectSearchHistory").val("0");
         }
     });
 
