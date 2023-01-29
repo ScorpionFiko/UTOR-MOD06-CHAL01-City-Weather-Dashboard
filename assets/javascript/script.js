@@ -168,7 +168,7 @@ function renderWeatherData(weatherData) {
 // fetches the city coordinates and if there's more than one displays an additional list
 // otherwise takes the user to the weather data
 function getCityCoordinates(inputCity) {
-    let coordinatesApi = "http://api.openweathermap.org/geo/1.0/direct?q=" + inputCity + "&appid=" + openWeatherApiKey() + "&limit=5";
+    let coordinatesApi = "https://api.openweathermap.org/geo/1.0/direct?q=" + inputCity + "&appid=" + openWeatherApiKey() + "&limit=5";
     fetch(coordinatesApi).then(function (response) {
         if (response.ok) {
             return response.json();
