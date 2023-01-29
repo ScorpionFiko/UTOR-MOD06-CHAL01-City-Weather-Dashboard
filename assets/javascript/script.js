@@ -90,7 +90,6 @@ function getWeatherData(cityData) {
                 weatherData.push(element);
             });
             renderWeatherData(weatherData);
-            console.log(weatherData);
         }).catch((error) => {
             alert("There was an error fetching the weather conditions! Please try again later!");
             console.log('Error:' + error);
@@ -106,11 +105,13 @@ function renderWeatherData(weatherData) {
     if (weatherData.length === 0) {
         return;
     }
+    $("body").removeClass("body-data");
     $('#weatherForecast').empty();
     $('#weatherForecast').append($('<div>', {
         class: "row justify-content-between  align-items-stretch w-100",
         id: "weatherRow"
     }));
+    $("body").addClass("body-data");
     // weather array has 5 day forcase in 3 hour intervals; therefore, every 8th entry is picked up
     for (let i = 0; i < weatherData.length; i += 8) {
         let element = weatherData[i];
