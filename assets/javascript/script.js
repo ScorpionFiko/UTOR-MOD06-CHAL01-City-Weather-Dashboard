@@ -102,37 +102,59 @@ function getWeatherData(cityData) {
 
 function renderWeatherData(weatherData) {
     $('#weatherForecast').empty();
-    let weatherRow = $('#weatherForecast').append($('<div>', {
+    $('#weatherForecast').append($('<div>', {
         class: "row justify-content-between",
         id: "weatherRow"
     }));
-    for (let i = 0; i < weatherData.length; i = i + 8) {
+
+    for (let i = 0; i < weatherData.length; i += 8) {
         let element = weatherData[i];
-        let weatherCol = $('#weatherRow').append($('<div>', {
-            class: "col-lg-2 col-md-8 col-sm-11 m-3",
+        // appending column to the row
+        $('#weatherRow').append($('<div>', {
+            class: "col-lg-2 col-md-8 col-sm-11 m-3 d-flex align-items-stretch",
             id: "weatherCol" + element.dt
         }));
-        let weatherCard = $("#weatherCol" + element.dt).append($('<div>', {
+        // appending card to the column
+        $("#weatherCol" + element.dt).append($('<div>', {
             class: "card",
             id: "weatherCard" + element.dt
         }));
-        let weatherCardImg = $("#weatherCard" + element.dt).append($('<img>', {
+        // appending card body to the card
+        $("#weatherCard" + element.dt).append($('<div>', {
+            class: "card-body",
+            id: "weatherCardBody" + element.dt
+        }));
+        // appending title to the card body
+        $("#weatherCardBody" + element.dt).append($('<h5>', {
+            html: ((i ===0) ? "CURRENT<br>" : "" ) + dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY h:mm a"),
+            class: "card-title"
+        }));
+        // appending image to the card body
+        $("#weatherCardBody" + element.dt).append($('<img>', {
             class: "card-img-top",
             src: "https://openweathermap.org/img/wn/" + element.weather[0].icon + "@4x.png",
             alt: "image of " + element.weather[0].description,
             id: "weatherCardImg" + element.dt
         }));
-        let weatherCardBody = $("#weatherCard" + element.dt).append($('<div>', {
-            class: "card-body",
-            id: "weatherCardBody" + element.dt
+        // appending weather description
+        $("#weatherCardBody" + element.dt).append($('<h6>', {
+            html: element.weather[0].description,
+            class: "card-subtitle mb-2 text-muted capitalize"
         }));
-        let weatherCardBodyH5 = $("#weatherCardBody" + element.dt).append($('<h5>', {
-            text: element.weather[0].main,
+        // appending temp to the card body
+        $("#weatherCardBody" + element.dt).append($('<h5>', {
+            html: '<i class="fas fa-temperature-high"></i> ' +element.main.temp + "&deg;C",
             class: "card-title"
         }));
-        let weatherCardBodyH6 = $("#weatherCardBody" + element.dt).append($('<h6>', {
-            text: dayjs(element.dt_txt).format("MMM D, YYYY H:MM:SS"),
-            class: "card-subtitle mb-2 text-muted"
+        // appending humidity to the card body
+        $("#weatherCardBody" + element.dt).append($('<h5>', {
+            html: '<i class="fas fa-water"></i> ' +element.main.humidity + "%",
+            class: "card-title"
+        }));
+        // appending wind to the card body
+        $("#weatherCardBody" + element.dt).append($('<h5>', {
+            html: '<i class="fas fa-wind"></i> '+element.wind.speed + "kph",
+            class: "card-title"
         }));
 
     }
@@ -190,7 +212,6 @@ function createCityList(cityList) {
     $('#cityListSelector').text('');
     cityList.forEach((city, index) => {
         let cityID = getCityId(city);
-        if ($('#' + cityID).length === 0) {
             $('#cityListSelector').append($('<a/>', {
                 text: getCityStateCountry(city),
                 id: "list-"+cityID,
@@ -204,7 +225,6 @@ function createCityList(cityList) {
             $('#list-' + cityID).attr("data-state", city.state);
             $('#list-' + cityID).attr("data-country", city.country);
             $('#list-' + cityID).addClass("list-group-item-action");
-        }
     });
 
 }
