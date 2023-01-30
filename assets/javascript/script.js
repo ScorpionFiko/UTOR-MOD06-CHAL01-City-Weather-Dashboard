@@ -179,7 +179,7 @@ function renderWeatherData(weatherData) {
     }
 }
 // function that creates placeholder cards. using the same layout as the final weather card
-function createWeatherCardPlaceholders(units) {
+function createWeatherCardPlaceholders() {
     $('#weatherForecast').empty();
     $("body").removeClass("body-data");
     $('#weatherForecast').append($('<div>', {
