@@ -66,9 +66,7 @@ function saveSearchHistory(cityData) {
 }
 // fetches the current and 5 day forecast weather data and combines them into a single array 
 function getWeatherData(cityData) {
-    $('#weatherForecast').empty();
-    $("body").removeClass("body-data");
- 
+    createWeatherCardPlaceholders(units);
     if ($("#unitSlider").val() === "0") {
         units = "metric";
     } else {
@@ -108,7 +106,8 @@ function renderWeatherData(weatherData) {
     if (weatherData.length === 0) {
         return;
     }
- 
+    $('#weatherForecast').empty();
+    $("body").removeClass("body-data");
     $('#weatherForecast').append($('<div>', {
         class: "row justify-content-between  align-items-stretch w-100",
         id: "weatherRow"
@@ -137,6 +136,8 @@ function renderWeatherData(weatherData) {
             html: ((i === 0) ? "CURRENT<br>" + dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY h:mm a") : dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY")),
             class: "card-title"
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
         // appending image to the card body
         $("#weatherCardBody" + element.dt).append($('<img>', {
             class: "card-img-top",
@@ -144,29 +145,105 @@ function renderWeatherData(weatherData) {
             alt: "image of " + element.weather[0].description,
             id: "weatherCardImg" + element.dt
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
         // appending weather description
         $("#weatherCardBody" + element.dt).append($('<h6>', {
             html: element.weather[0].description,
             class: "card-title mb-2 capitalize"
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
         // appending temp to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
             html: '<i class="fas fa-temperature-high"></i> ' + element.main.temp + "&deg;" + ((units === "metric") ? "C" : "F"),
             class: "card-title"
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
         // appending humidity to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
             html: '<i class="fas fa-water"></i> ' + element.main.humidity + "%",
             class: "card-title"
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
         // appending wind to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
             html: '<i class="fas fa-wind"></i> ' + element.wind.speed + ((units === "metric") ? "kph" : "mph"),
             class: "card-title"
         }));
+        $("#weatherCardBody"+i).append($('<br>'));
+
 
     }
 }
+// function that creates placeholder cards. using the same layout as the final weather card
+function createWeatherCardPlaceholders(units) {
+    $('#weatherForecast').empty();
+    $("body").removeClass("body-data");
+    $('#weatherForecast').append($('<div>', {
+        class: "row justify-content-between  align-items-stretch w-100",
+        id: "weatherRow"
+    }));
+    $("body").addClass("body-data");
+    for (let i = 0; i < 6; i++) {
+        // appending column to the row
+        $('#weatherRow').append($('<div>', {
+            class: "col-xl-2 col-lg-3 col-md-3 col-sm-5 m-3 d-flex align-items-stretch justify-content-center",
+            id: "weatherCol" + i
+        }));
+        // appending card to the column
+        $("#weatherCol" + i).append($('<div>', {
+            class: "card w-100 placeholder-glow",
+            id: "weatherCard" + i
+        }));
+        // appending card body to the card
+        $("#weatherCard" + i).append($('<div>', {
+            class: "card-body bg-info-subtle",
+            id: "weatherCardBody" + i
+        }));
+        // appending title to the card body
+        $("#weatherCardBody" + i).append($('<h5>', {
+            html: dayjs().format("MMM D, YYYY"),
+            class: "card-title placeholder"
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+        // appending image to the card body
+        $("#weatherCardBody" + i).append($('<img>', {
+            class: "card-img-top placeholder",
+            src: "./assets/images/placeholder-img-200x200.png",
+            alt: "placeholder image",
+            id: "weatherCardImg" + i
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+        // appending weather description
+        $("#weatherCardBody" + i).append($('<h6>', {
+            html: "description",
+            class: "card-title mb-2 capitalize placeholder"
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+        // appending temp to the card body
+        $("#weatherCardBody" + i).append($('<h5>', {
+            html: '<i class="fas fa-temperature-high"></i> ' + "X" + "&deg;" + ((units === "metric") ? "C" : "F"),
+            class: "card-title placeholder"
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+        // appending humidity to the card body
+        $("#weatherCardBody" + i).append($('<h5>', {
+            html: '<i class="fas fa-water"></i> ' + "XX" + "%",
+            class: "card-title placeholder"
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+        // appending wind to the card body
+        $("#weatherCardBody" + i).append($('<h5>', {
+            html: '<i class="fas fa-wind"></i> ' + "X" + ((units === "metric") ? "kph" : "mph"),
+            class: "card-title placeholder"
+        }));
+        $("#weatherCardBody" + i).append($('<br>'));
+    }
+}
+
 // fetches the city coordinates and if there's more than one displays an additional list
 // otherwise takes the user to the weather data
 function getCityCoordinates(inputCity) {

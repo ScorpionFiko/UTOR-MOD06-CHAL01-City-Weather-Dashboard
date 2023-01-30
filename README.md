@@ -6,7 +6,7 @@ University of Toronto - Module 06 - Challenge 01 - City - Weather - Dashboard
 
 Repository containing the code for the Weather Application. The weather to search for the weather for particular city and receive the response in their chosen units of measurement. This application is also accounting for the fact that the city may be present in different countries; therefore, when such a city is encountered, the user is presented with up to a maximum of five possible options from which to select. The app then returns the weather for that chosen city. The user can also see a history of their previous searches and pick a city from there as well.
 
-The weather is displayed in individual card for each day. The user is presented with temperature, humidity, and wind speed along with an image describing the weather. The user can see the current weather conditions in the first card and then the five day forecast. The current weather is also highlighted in different colour from the rest of the five day forecast.
+The weather is displayed in individual card for each day. While fetching data, placeholder cards are shown to show the user that information is arriving. When information arrives, the user is presented with temperature, humidity, and wind speed along with an image describing the weather. The user can see the current weather conditions in the first card and then the five day forecast. The current weather is also highlighted in different colour from the rest of the five day forecast.
 
 The website is done using HTML, CSS, and JavaScript utilizing the Bootstrap, jQuery and Font Awesome (for icons).
 
@@ -44,7 +44,7 @@ The entire web site is built upon Bootstrap 5.3. All elements (header (title and
 
 ### jQuery:
 
-The entire web site is using jQuery to build the page. The most notable locations are the city list modal box that show the list of up to five cities with same names and the weather cards; these are all built dynamically after the information has been retrieved from the weather API.
+The entire web site is using jQuery to build the page. The most notable locations are the city list modal box that show the list of up to five cities with same names, the placeholder weather cards, and the weather cards; these are all built dynamically after the information has been retrieved from the weather API.
 
 ### OpenWeather:
 
@@ -96,4 +96,4 @@ Please refer to the LICENSE in the repo.
 Below are some thoughts for future upgrades:
 
 - upgrade the app to search by postal code
-- create placeholder cards while the information is being retrieved
+- combine the render functions for the placeholder cards and weather cards into one for more consisstent code
