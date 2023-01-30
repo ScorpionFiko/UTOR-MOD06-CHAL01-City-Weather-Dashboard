@@ -66,7 +66,7 @@ function saveSearchHistory(cityData) {
 }
 // fetches the current and 5 day forecast weather data and combines them into a single array 
 function getWeatherData(cityData) {
-    createWeatherCardPlaceholders(units);
+    createWeatherCardPlaceholders();
     if ($("#unitSlider").val() === "0") {
         units = "metric";
     } else {
