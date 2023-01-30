@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- adding font awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
@@ -40,7 +41,7 @@
               <button
                 placeholder="search for a city"
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-primary btn-custom"
                 data-bs-toggle="modal"
                 data-bs-target="#citySearch"
               >
@@ -59,7 +60,9 @@
             >
               <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
-                  <div class="modal-header">
+                  <div
+                    class="modal-header text-primary-emphasis bg-primary-subtle"
+                  >
                     <h1 class="modal-title fs-5" id="citySearchLabel">
                       Search for a city
                     </h1>
@@ -72,21 +75,24 @@
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <div class="input-group mb-2 justify-content-between">
-                      <label for="unitSlider" class="form-label"
+                    <div
+                      class="input-group mb-2 justify-content-between align-items-center"
+                    >
+                      <label for="unitSlider" class="form-label text-body"
                         >Metric<br />&deg;C/kph</label
-                      ><label for="unitSlider" class="form-label"
-                        >Imperial<br />&deg;F/mph</label
                       >
                       <input
                         type="range"
-                        class="form-range"
+                        class="form-range w-50"
                         min="0"
                         max="1"
                         step="1"
                         id="unitSlider"
                         value="0"
                       />
+                      <label for="unitSlider" class="form-label text-body"
+                        >Imperial<br />&deg;F/mph</label
+                      >
                     </div>
 
                     <p class="card-text text-start">
@@ -133,7 +139,9 @@
             >
               <div class="modal-dialog">
                 <div class="modal-content">
-                  <div class="modal-header">
+                  <div
+                    class="modal-header text-primary-emphasis bg-primary-subtle"
+                  >
                     <h1 class="modal-title fs-5" id="cityListLabel">
                       Please select from the following cities
                     </h1>
@@ -161,10 +169,13 @@
     </header>
     <main>
       <section id="weatherForecast" class="text-center p-5">
-        <h2>Use the search button to obtain the weather information for a city of your choosing. </h2>
+        <h2>
+          Use the search button to obtain the weather information for a city of
+          your choosing.
+        </h2>
       </section>
     </main>
-    <footer>
+    <footer class="text-bg-dark custom-footer">
       <p>&copy;Stefan Marinov. All rights reserved.</p>
     </footer>
 

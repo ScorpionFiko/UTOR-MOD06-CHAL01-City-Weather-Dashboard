@@ -117,7 +117,7 @@ function renderWeatherData(weatherData) {
         let element = weatherData[i];
         // appending column to the row
         $('#weatherRow').append($('<div>', {
-            class: "col-lg-2 col-md-3 col-sm-5 m-3 d-flex align-items-stretch justify-content-center",
+            class: "col-xl-2 col-lg-3 col-md-3 col-sm-5 m-3 d-flex align-items-stretch justify-content-center",
             id: "weatherCol" + element.dt
         }));
         // appending card to the column
@@ -127,12 +127,12 @@ function renderWeatherData(weatherData) {
         }));
         // appending card body to the card
         $("#weatherCard" + element.dt).append($('<div>', {
-            class: "card-body",
+            class: "card-body " + ((i === 0) ? "bg-warning-subtle" : "bg-info-subtle"),
             id: "weatherCardBody" + element.dt
         }));
         // appending title to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {
-            html: ((i === 0) ? "CURRENT<br>" : "") + dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY h:mm a"),
+            html: ((i === 0) ? "CURRENT<br>" + dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY h:mm a") : dayjs(dayjs.unix(element.dt)).format("MMM D, YYYY")),
             class: "card-title"
         }));
         // appending image to the card body
@@ -145,7 +145,7 @@ function renderWeatherData(weatherData) {
         // appending weather description
         $("#weatherCardBody" + element.dt).append($('<h6>', {
             html: element.weather[0].description,
-            class: "card-subtitle mb-2 text-muted capitalize"
+            class: "card-title mb-2 capitalize"
         }));
         // appending temp to the card body
         $("#weatherCardBody" + element.dt).append($('<h5>', {

@@ -1,32 +1,18 @@
+/* global variables */
 :root {
-  --padding-var: 10px;
-  --margin-var: 5px;
-  --colour-header: #f1faee;
-  --colour-footer: #1d3557;
-  --colour-button: #457b9d;
-  --colour-button-disabled: #a8dadc;
-  --colour-status: #a8dadc;
-  --colour-link: #e63946;
-  --colour-danger: #e63946;
-  --border-radius-var: 8px;
   --footer-height: 15vh;
 }
-
+/* capitalization of the weather description */
 .capitalize {
   text-transform: capitalize !important;
 }
-
+/* class necessary for always positioning the footer at the bottom */
 .body-data {
-    position: relative;
-    padding-bottom: var(--footer-height)
-  }
-  
-
-footer {
-  background-color: var(--colour-footer);
-  color: var(--colour-header);
-  padding: var(--padding-var);
-  margin: 50px 0 0 0;
+  position: relative;
+  padding-bottom: var(--footer-height);
+}
+/* footer settings */
+.custom-footer {
   font-size: 1em;
   vertical-align: top;
   height: var(--footer-height);
