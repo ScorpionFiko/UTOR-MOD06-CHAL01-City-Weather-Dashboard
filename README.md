@@ -4,11 +4,11 @@ University of Toronto - Module 06 - Challenge 01 - City - Weather - Dashboard
 
 ## Description
 
-Repository containing the code for the Weather Application. The weather app allows the user the select their units of measurement and also search for the weather for particular city. This application is also accounting for the fact that many countries can have similar named cities; therefore, when such a city is encountered, the user is presented with up to a mazimum of five possible options from which the user can select. The app then returns the weather for that chosen city. The user can also see a history of their previous searches and pick a sity from there as well.
+Repository containing the code for the Weather Application. The weather to search for the weather for particular city and receive the response in their chosen units of measurement. This application is also accounting for the fact that the city may be present in different countries; therefore, when such a city is encountered, the user is presented with up to a maximum of five possible options from which to select. The app then returns the weather for that chosen city. The user can also see a history of their previous searches and pick a city from there as well.
 
 The weather is displayed in individual card for each day. The user is presented with temperature, humidity, and wind speed along with an image describing the weather. The user can see the current weather conditions in the first card and then the five day forecast. The current weather is also highlighted in different colour from the rest of the five day forecast.
 
-The website is done using HTML, CSS, and JavaScript utilizing the Bootsrap, jQuery and Font Awesome (for icons).
+The website is done using HTML, CSS, and JavaScript utilizing the Bootstrap, jQuery and Font Awesome (for icons).
 
 Below is the image of the application when the user lands on the page
 ![City Weather Dashboard Landing](./assets/images/CWD-01-Landing.png)
@@ -40,17 +40,17 @@ The following discusses at a high level about some of the features of the websit
 
 ### Bootstrap:
 
-The entire web site is built upon Bootstrap 5.3. All elements (header (title and search button), two modal forms, grid layout for the weather cards, and footer) are Boostrap utilizing the Bootstrap CSS for positioning and layout. Custom colours were not used. The only custom CSS is for the creation of the footer and to capitalize the weather description as it comes in lower case from the API.
+The entire web site is built upon Bootstrap 5.3. All elements (header (title and search button), two modal forms, grid layout for the weather cards, and footer) are Bootstrap utilizing the Bootstrap CSS for positioning and layout. Custom colours were not used. The only custom CSS is for the creation of the footer and to capitalize the weather description as it comes in lower case from the API.
 
 ### jQuery:
 
-The entire web site is using jQuery to build the page. The most notable locations are the city list modal box that show the list of up to five cities with same names and the weather cards; these are all built dynamically based on supplied information.
+The entire web site is using jQuery to build the page. The most notable locations are the city list modal box that show the list of up to five cities with same names and the weather cards; these are all built dynamically after the information has been retrieved from the weather API.
 
 ### OpenWeather:
 
 The source of the weather is OpenWeather API's. Three API's were used for that:
 
-- Geocoding API - that provides the longitue and lattitude of a city. This API also provides the listing of the additional cities with the same name that are later displayed to the user. The API restricts of up to 5 matching cities. (https://openweathermap.org/api/geocoding-api)
+- Geocoding API - that provides the longitude and latitude of a city. This API also provides the listing of the additional cities with the same name that are later displayed to the user. The API restricts of up to 5 matching cities. (https://openweathermap.org/api/geocoding-api)
 - Weather API - that provides the current weather conditions for the city. It uses the lattitude and longitude provided from the Geocoding API in order to provide the weather data. (https://openweathermap.org/current)
 - Forecast API - that provides the 5 day forecast in 3 hour intervals. Like the weather API it uses the lattitude and longitude to provide the weather data. As the result is in 3-hour intervals, every 8th entry is used for the daily forecast. (https://openweathermap.org/forecast5)
 
@@ -96,3 +96,4 @@ Please refer to the LICENSE in the repo.
 Below are some thoughts for future upgrades:
 
 - upgrade the app to search by postal code
+- create placeholder cards while the information is being retrieved

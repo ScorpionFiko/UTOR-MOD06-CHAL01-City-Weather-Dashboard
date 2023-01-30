@@ -68,7 +68,7 @@ function saveSearchHistory(cityData) {
 function getWeatherData(cityData) {
     $('#weatherForecast').empty();
     $("body").removeClass("body-data");
-
+ 
     if ($("#unitSlider").val() === "0") {
         units = "metric";
     } else {
@@ -108,6 +108,7 @@ function renderWeatherData(weatherData) {
     if (weatherData.length === 0) {
         return;
     }
+ 
     $('#weatherForecast').append($('<div>', {
         class: "row justify-content-between  align-items-stretch w-100",
         id: "weatherRow"
