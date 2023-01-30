@@ -66,6 +66,9 @@ function saveSearchHistory(cityData) {
 }
 // fetches the current and 5 day forecast weather data and combines them into a single array 
 function getWeatherData(cityData) {
+    $('#weatherForecast').empty();
+    $("body").removeClass("body-data");
+
     if ($("#unitSlider").val() === "0") {
         units = "metric";
     } else {
@@ -105,8 +108,6 @@ function renderWeatherData(weatherData) {
     if (weatherData.length === 0) {
         return;
     }
-    $("body").removeClass("body-data");
-    $('#weatherForecast').empty();
     $('#weatherForecast').append($('<div>', {
         class: "row justify-content-between  align-items-stretch w-100",
         id: "weatherRow"
