@@ -109,7 +109,7 @@ function renderWeatherData(weatherData) {
     $('#weatherForecast').empty();
     $("body").removeClass("body-data");
     $('#weatherForecast').append($('<div>', {
-        class: "row justify-content-between  align-items-stretch w-100",
+        class: "d-flex col-12 justify-content-between  align-items-stretch",
         id: "weatherRow"
     }));
     $("body").addClass("body-data");
@@ -118,7 +118,7 @@ function renderWeatherData(weatherData) {
         let element = weatherData[i];
         // appending column to the row
         $('#weatherRow').append($('<div>', {
-            class: "col-xl-2 col-lg-3 col-md-3 col-sm-5 m-3 d-flex align-items-stretch justify-content-center",
+            class: "col-xl-2 col-lg-3 col-md-3 col-sm-5 p-3 d-flex align-items-stretch justify-content-center",
             id: "weatherCol" + element.dt
         }));
         // appending card to the column
